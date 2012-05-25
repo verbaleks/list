@@ -21,11 +21,8 @@
 		background-color: red;
 	}
 	tr:hover td.items {
-		display: inline;
+		display: table-cell;
 		visibility: visible;
 		background-color: white;
-		color: white;
-		border: 0;
-		cellspacing: 0;
 	}
 }
