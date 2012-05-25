@@ -1,12 +1,10 @@
 <%= select 'category', 'id', @categories.map{|a| [a.title, a.id]}, :selected => params[:category_id] %>
-<div id="task_table" >
-<table border="1">
-		<tr class="title">
+<table id="task_table">
+		<tr>
 			<th>title</th>
 			<th>task</th>
 			<th>from</th>
 			<th>to</th>
-			<th colspan="2">action</th>
 		</tr>
 	<% @tasks.each do |f| %>
 		<tr class="<%= cycle('f_row', 's_row') %>">
@@ -14,12 +12,12 @@
 			<td><%= f.task %></td>
 			<td><%= f.from %></td>
 			<td><%= f.to %></td>
-			<td class="edit"><%= link_to 'edit', edit_task_path(f) %></td>
-			<td class="delete"><%= link_to 'delete', f, :method => :delete %></td>
+			<td class="items"><%= link_to image_tag( 'edit.gif', :alt => 'edit'), edit_task_path(f) %></td>
+			<td class="items"><%= link_to image_tag( 'delete.gif', :alt => 'delete'), f, :method => :delete %></td>
 		</tr>
 	<% end %>
 </table>
-</div>
+
 <%= link_to 'create new task', new_task_path(:category_id => params[:category_id]) %>
 <br>
 <%= link_to 'back to categories', categories_path %>

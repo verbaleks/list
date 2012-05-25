@@ -2,23 +2,26 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#task_table 
-
-	tr.f_row:hover {
+#task_table	{
+	td.items {
+		visibility: hidden;
+		display: none;
+	}
+	tr:not(:first-child):hover {
 		color: #ffe;
 		background-color: #5488af;
-		}
-	tr.s_row:hover {
-		color: #ffe;
-		background-color: #5488af;
-		}
+	}
 	tr.f_row {
 		background-color: white;
-		} 
+	} 
 	tr.s_row {
 		background-color: silver;
-		}
-	tr.title {
+	}
+	tr:first-child {
 		background-color: red;
-		}
-
+	}
+	tr:hover td.items {
+		display: inline;
+		visibility: visible;
+	}
+}
