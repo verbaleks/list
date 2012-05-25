@@ -1,0 +1,16 @@
+<table>
+	<%= form_for @category do |f| %>
+		<tr>
+			<td><%= f.label :title %></td>
+			<td><%= f.text_field :title %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :description %></td>
+			<td><%= f.text_area :description %></td>
+		</tr>
+		<tr>
+			<td><%= f.submit "create category" %></td>
+		<tr>
+	<% end %>
+</table>
+<%= link_to "back to categories", categories_path %>

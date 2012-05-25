@@ -1,0 +1,15 @@
+<table>
+	<% form_for @user do [f] %>
+		<tr>
+			<td><% f.label :login %></td>
+			<td><% f.text_field :login %></td>
+		</tr>
+		<tr>
+			<td><% f.label :password %></td>
+			<td><% f.password_field :password %></td>
+		</tr>
+		<tr>
+			<td><%  f.submit "log in" categories_path%></td>
+		</tr>
+	<% end %>
+</table>

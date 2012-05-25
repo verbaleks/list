@@ -1,0 +1,17 @@
+<table border="1">
+		<tr>
+			<th>title</th>
+			<th>description</th>
+			<th colspan="2">action</th>
+		</tr>
+	<% @categories.each do |f| %>
+		<tr>
+			<td><%= link_to f.title, tasks_path(:category_id => f) %></td>
+			<td><%= f.description %></td>
+			<td><%= link_to 'Edit', edit_category_path(f) %></td>
+			<td><%= link_to 'delete', category_path(f), :method => "delete" %></td>
+		</tr>
+	<% end %>
+</table>
+
+<%= link_to "new category", new_category_path %>

@@ -1,0 +1,13 @@
+<table>
+	<% @users.each do |f| %>
+		<tr>
+			<td><%= f.login %></td>
+			<td><%= f.password %></td>
+		</tr>
+	<% end %>
+
+	<tr>
+		<td><%=  link_to "create new user", new_user_path  %></td>
+	</tr>
+
+</table>

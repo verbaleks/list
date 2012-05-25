@@ -1,0 +1,16 @@
+<table>
+	<%= form_tag sessions_path do |f| %>
+		<tr>
+			<td><%= label_tag :login %></td>
+			<td><%= text_field_tag :login %></td>
+		</tr>
+		<tr>
+			<td><%= label_tag :password %></td>
+			<td><%= password_field_tag :password %></td>
+		</tr>
+		<tr>
+			<td><%= submit_tag "log in" %></td>
+		</tr>
+	<% end %>
+</table>
+<% link_to 'new user', new_user_path %>

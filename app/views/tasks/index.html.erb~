@@ -1,0 +1,32 @@
+<%= select 'category', 'id', @categories.map{|a| [a.title, a.id]}, :selected => params[:category_id] %>
+<div id="task_table" >
+<table border="1">
+		<tr class="title">
+			<th>title</th>
+			<th>task</th>
+			<th>from</th>
+			<th>to</th>
+			<th colspan="2">action</th>
+		</tr>
+	<% @tasks.each do |f| %>
+		<tr class="<%= cycle('f_row', 's_row') %>">
+			<td><%= f.title %></td>
+			<td><%= f.task %></td>
+			<td><%= f.from %></td>
+			<td><%= f.to %></td>
+			<td><%= link_to 'edit', edit_task_path(f) %></td>
+			<td><%= link_to 'delete', f, :method => :delete %></td>
+		</tr>
+	<% end %>
+</table>
+</div>
+<%= link_to 'create new task', new_task_path(:category_id => params[:category_id]) %>
+<br>
+<%= link_to 'back to categories', categories_path %>
+
+<script type="text/javascript">
+
+$('#category_id').change(function(){
+	window.location = '/tasks?category_id=' + $(this).val();
+})
+</script>

@@ -1,0 +1,38 @@
+<table>
+	<%= form_for @task do |f| %>
+		<% if @task.errors.any? %>
+			<ul>
+				<% @task.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		<% end %>
+		<tr>
+			<td><%= f.label :title %></td>
+			<td><%= f.text_field :title %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :task %></td>
+			<td><%= f.text_area :task %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :from %></td>
+			<td><%= f.date_select :from %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :to %></td>
+			<td><%= f.date_select :to %></td>
+		</tr>
+		<tr>
+			<td>
+				<% if params[:category_id] %>
+					<%= f.hidden_field :category_id, :value => params[:category_id] %>
+				<% else %>
+					<%= f.collection_select(:category_id, current_user.categories, :id, :title) %>
+				<% end %>
+				<%= f.submit %>
+			</td>
+		</tr>
+	<% end %>
+</table>
+<%= link_to "back to tasks", tasks_path %>

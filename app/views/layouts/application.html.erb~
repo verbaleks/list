@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>List</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div align="right">
+	<% if current_user %>
+		<%= current_user.first_name %>
+		<%= link_to "logout", logout_path %>
+		<%= link_to "edit", edit_path(current_user.id) %>
+	<% end %>
+	</div>
+<%= yield %>
+
+</body>
+</html>

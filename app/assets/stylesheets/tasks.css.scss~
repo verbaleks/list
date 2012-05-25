@@ -1,0 +1,24 @@
+// Place all the styles related to the tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#task_table 
+
+	tr.f_row:hover {
+		color: #ffe;
+		background-color: #5488af;
+		}
+	tr.s_row:hover {
+		color: #ffe;
+		background-color: #5488af;
+		}
+	tr.f_row {
+		background-color: blue;
+		} 
+	tr.s_row {
+		background-color: silver;
+		}
+	tr.title {
+		background-color: red;
+		}
+
