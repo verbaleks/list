@@ -1,8 +1,13 @@
 class Task < ActiveRecord::Base
-  attr_accessible :title, :task, :from, :to, :category_id
+  attr_accessible :title, :task, :from, :to, :category_id, :position
 	belongs_to :category
-	scope :by_task, lambda{ |category_id| where(:category_id => category_id)}
+	belongs_to :user
+	serialize :position, Hash
+
+	scope :by_category, lambda{ |category_id| (category_id && category_id != '-1') ? where(:category_id => category_id) : {} }
+	scope :search, lambda{ |search| search ? where("title LIKE ?", "%#{search}%") : all  }
 
 	validates :title, :presence => true
 	validates :task, :presence => true
+
 end

@@ -3,7 +3,8 @@ class SessionsController < ApplicationController
 skip_before_filter :if_login
 
 	def create
-		if @user = User.find_by_login_and_password(params[:login], params[:password])
+		@user = User.find_by_login_and_password(params[:login], params[:password])
+		if @user && @user.registered
 			session[:user_id] = @user.id
 			redirect_to categories_path
 		else

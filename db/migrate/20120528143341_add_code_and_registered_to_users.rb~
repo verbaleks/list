@@ -1,0 +1,11 @@
+class AddCodeAndRegisteredToUsers < ActiveRecord::Migration
+  def up
+		add_column :users, :code, :integer
+		add_column :users, :registered, :integer
+  end
+
+  def down
+		remove_column :users, :code
+		remove_column :users, :registered
+  end
+end

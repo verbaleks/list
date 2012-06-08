@@ -1,0 +1,8 @@
+class Usermailer < ActionMailer::Base
+  default from: "aleks_test@gmail.com"
+
+ def reg_con(user)
+   @user = user
+   mail(:to => user.email, :subject => "Registered")
+ end
+end

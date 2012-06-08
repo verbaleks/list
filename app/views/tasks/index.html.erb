@@ -1,22 +1,39 @@
-<%= select 'category', 'id', @categories.map{|a| [a.title, a.id]}, :selected => params[:category_id] %>
+
+<%= select 'category', 'id', @categories_for_select, {:selected => selected_category_id} %>
+
+<%= form_tag tasks_path, :method => 'get' do %>
+	<p>
+		<%= text_field_tag :search, params[:search] %>
+		<%= hidden_field_tag :category_id, selected_category_id %>
+		<%= submit_tag "Search", :name => nil %>
+	</p>
+<% end %>
+
+
 <table id="task_table">
+	<thead>
 		<tr>
-			<th>title</th>
-			<th>task</th>
-			<th>from</th>
-			<th>to</th>
+			<th><%= sortable "title" %></th>
+			<th><%= sortable "task" %></th>
+			<th><%= sortable "from" %></th>
+			<th><%= sortable "to" %></th>
 		</tr>
-	<% @tasks.each do |f| %>
-		<tr class="<%= cycle('f_row', 's_row') %>">
-			<td><%= f.title %></td>
-			<td><%= f.task %></td>
-			<td><%= f.from %></td>
-			<td><%= f.to %></td>
-			<td class="items"><%= link_to image_tag( 'edit.gif', :alt => 'edit'), edit_task_path(f) %></td>
-			<td class="items"><%= link_to image_tag( 'delete.gif', :alt => 'delete'), f, :method => :delete %></td>
-		</tr>
+	</thead>
+
+	<tbody id="tasks">
+	<% @tasks.each_with_index do |f, index| %>
+			<tr id="task_<%= f.id %>" class="<%= cycle('f_row', 's_row') %> handle">
+				<td><%= f.title %></td>
+				<td><%= f.task %></td>
+				<td><%= f.from.strftime("%B %e, %Y") %></td>
+				<td><%= f.to.strftime("%B %e, %Y") %></td>
+				<td class="items"><%= link_to image_tag( 'edit.gif', :alt => 'edit'), edit_task_path(f) %></td>
+				<td class="items"><%= link_to image_tag( 'delete.gif', :alt => 'delete'), f, :method => :delete %></td>
+			</tr>
 	<% end %>
+	</tbody>
 </table>
+
 
 <%= link_to 'create new task', new_task_path(:category_id => params[:category_id]) %>
 <br>
@@ -26,5 +43,16 @@
 
 $('#category_id').change(function(){
 	window.location = '/tasks?category_id=' + $(this).val();
+})
+
+$( "#tasks" ).sortable({
+	items: 'tr',
+	update: function() {
+		$.ajax({
+			type: "post",
+			url: "tasks/position",
+			data: $("#tasks").sortable("serialize") + "&category_id=" + category_id
+		});
+	}
 })
 </script>

@@ -34,4 +34,15 @@ skip_before_filter :if_login
 		redirect_to new_session_path
 	end
 
+	def registered
+		if @user = User.find_by_code(params[:code])
+			@user.update_attribute(:registered, Time.now)
+			flash[:notice] = "Account was confirm successful"
+			redirect_to new_session_path
+		else
+			flash[:error] = "Hakker"
+			render new_session_path
+		end
+	end
+
 end

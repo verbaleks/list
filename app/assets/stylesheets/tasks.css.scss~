@@ -3,26 +3,36 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #task_table	{
-	td.items {
-		visibility: hidden;
-		display: none;
+	tbody {
+		td.items {
+			visibility: hidden;
+			display: none;
+		}
+		tr:hover {
+			color: red;
+			background-color: blue;
+		}
+		tr.f_row {
+			background-color: white;
+		} 
+		tr.s_row {
+			background-color: silver;
+		}
+		tr:hover td.items {
+			display: table-cell;
+			visibility: visible;
+			background-color: white;
+		}
 	}
-	tr:not(:first-child):hover {
-		color: #ffe;
-		background-color: #5488af;
-	}
-	tr.f_row {
-		background-color: white;
-	} 
-	tr.s_row {
-		background-color: silver;
-	}
-	tr:first-child {
-		background-color: red;
-	}
-	tr:hover td.items {
-		display: table-cell;
-		visibility: visible;
-		background-color: white;
+	thead {
+		th .asc {
+			padding-right: 12px;
+			background-repeat: no-repeat;
+			background-position: right center;
+			background-image: url(arrowupani.gif);
+		}
+		th .desc {
+			background-image: url(arrowdownani.gif);
+		}
 	}
 }

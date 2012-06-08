@@ -2,10 +2,18 @@ List::Application.routes.draw do
 	match "logout" => "sessions#destroy", :as => "logout"
 	match "login" => "sessions#new", :as => "login"
 	match "edit" => "users#edit", :as => "edit"		
-		resources :users
+		resources :users do
+			collection do
+			  get :registered
+			end
+		end
 		resources :sessions
 		resources :categories
-		resources :tasks
+		resources :tasks do
+			collection do
+				post :position
+			end
+		end
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

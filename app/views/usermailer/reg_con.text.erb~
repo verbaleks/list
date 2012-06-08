@@ -1,0 +1,3 @@
+<%= @user.login %>,
+<%= link_to 'visit for confirm registration', new_session_path[:code] %>
+Thank you for registering!

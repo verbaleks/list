@@ -3,7 +3,7 @@
 <head>
   <title>List</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "jquery-1.7.2.min", "jquery-ui-1.8.20.custom.min", "application", "rails" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -14,6 +14,7 @@
 		<%= link_to "edit", edit_user_path(current_user.id) %>
 	<% end %>
 	</div>
+
 <%= yield %>
 
 </body>
