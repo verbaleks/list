@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
 	helper_method :current_user
 
-	before_filter if_login
+	before_filter :if_login
 
 def if_login
 	if current_user
